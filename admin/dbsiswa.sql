@@ -34,7 +34,7 @@ CREATE TABLE `tsiswa10` (
   `nama` varchar(255) NOT NULL,
   `kelas` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Indexes for dumped tables
