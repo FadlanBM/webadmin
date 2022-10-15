@@ -8,7 +8,7 @@ $koneksi = mysqli_connect($server, $user, $password, $database) or die(mysqli_er
 
 //kode otomatis 
 $q = mysqli_query($koneksi,"SELECT absen FROM tsiswa10 order by absen asc limit 1");+
-B$datax = mysqli_fetch_array($q);
+$datax = mysqli_fetch_array($q);
 if($datax){
 $no_terakhir =substr($datax['absen'],-3);
 $no=$no_terakhir +1;
