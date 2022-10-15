@@ -198,7 +198,7 @@ if(isset($_GET['hal'])){
         <div class="col-md-8 mx-auto">
           <form method="POST">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" value="<?= @$_POST['tcari'] ?>" name="tcari" placeholder="Masukkan kata kunci">
+              <input type="text" class="form-control" name="tcari" placeholder="Masukkan kata kunci">
               <button class="btn btn-primary" name="bcari" type="submit">Cari</button>
               <button class="btn btn-danger" name="briset" type="submit">Reset</button>
             </div>
@@ -215,8 +215,16 @@ if(isset($_GET['hal'])){
           </tr>
 
           <?php
+//untuk pencarian data
+if(isset($_POST['bcari'])){
+  $keyword=$_POST['tcari'];
+  $q = "SELECT * FROM tsiswa10 WHERE id_nis like '%$keyword%' or nama like '%$keyword%' or alamat like '%$keyword%' order by absen asc";
+}else{
+  $q="SELECT * FROM tsiswa10 order by absen ASC";
+}
+
           //persiapan menampikan data
-          $tampil = mysqli_query($koneksi, "SELECT * FROM tsiswa10 order by absen ASC");
+          $tampil = mysqli_query($koneksi, $q);
           while ($data = mysqli_fetch_array($tampil)) :
 
           ?>
