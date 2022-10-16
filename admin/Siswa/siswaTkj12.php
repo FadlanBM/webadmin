@@ -7,7 +7,7 @@ if (isset($_POST['bsimpan'])) {
   //pengujian apakah data akan dia edit atau di simpan baru
   if (isset($_GET['hal']) == "edit") {
     //data akan di edit 
-    $edit = mysqli_query($koneksi, "UPDATE tsiswa10 SET 
+    $edit = mysqli_query($koneksi, "UPDATE tsiswa12 SET 
                                   absen   = '$_POST[tabsen]',
                                   id_nis  = '$_POST[tnis]',
                                   nama    = '$_POST[tnama]',
@@ -19,17 +19,17 @@ if (isset($_POST['bsimpan'])) {
     if ($edit) {
       echo "<script>
                         alert('edit Data Sukses!');
-                        document.location='siswaTKJ10.php';         
+                        document.location='siswaTKJ12.php';         
                     </script>";
     } else {
       echo "<script>
                             alert('edit Data Gagal!');
-                            document.location='siswaTKJ10.php';         
+                            document.location='siswaTKJ12.php';         
                         </script>";
     }
   } else {
     //Data Akan di simpan baru
-    $simpan = mysqli_query($koneksi, " INSERT INTO tsiswa10 (absen,id_nis,nama,kelas,alamat)
+    $simpan = mysqli_query($koneksi, " INSERT INTO tsiswa12 (absen,id_nis,nama,kelas,alamat)
                                       VALUE ('$_POST[tabsen]',
                                              '$_POST[tnis]',
                                              '$_POST[tnama]',
@@ -38,12 +38,12 @@ if (isset($_POST['bsimpan'])) {
     if ($simpan) {
       echo "<script>
             alert('Simpan Data Sukses!');
-            document.location='siswaTKJ10.php';         
+            document.location='siswaTKJ12.php';         
         </script>";
     } else {
       echo "<script>
                 alert('Simpan Data Gagal!');
-                document.location='siswaTKJ10.php';         
+                document.location='siswaTKJ12.php';         
             </script>";
     }
   }
@@ -64,7 +64,7 @@ if (isset($_GET['hal'])) {
   if ($_GET['hal'] == "edit") {
 
     //tampikan data yang akan di edit
-    $tampil = mysqli_query($koneksi, "SELECT * FROM tsiswa10 WHERE absen = '$_GET[id]'");
+    $tampil = mysqli_query($koneksi, "SELECT * FROM tsiswa12 WHERE absen = '$_GET[id]'");
     $data = mysqli_fetch_array($tampil);
     if ($data) {
       //jika data di temukan,maka data akan di tampung ke dalam variable
@@ -76,17 +76,17 @@ if (isset($_GET['hal'])) {
     }
   } elseif ($_GET['hal'] == "hapus") {
     //persiapan hapus data 
-    $hapus = mysqli_query($koneksi, "DELETE FROM tsiswa10 WHERE absen = '$_GET[id]'");
+    $hapus = mysqli_query($koneksi, "DELETE FROM tsiswa12 WHERE absen = '$_GET[id]'");
     //uji hapus data
     if ($hapus) {
       echo "<script>
               alert('hapus Data Sukses!');
-              document.location='siswaTKJ10.php';         
+              document.location='siswaTKJ12.php';         
           </script>";
     } else {
       echo "<script>
                   alert('hapus Data Gagal!');
-                  document.location='siswaTKJ10.php';         
+                  document.location='siswaTKJ12.php';         
               </script>";
     }
   }
@@ -150,8 +150,8 @@ if (isset($_GET['hal'])) {
               <label class="form-label">Kelas</label>
               <select class="form-select" name="tkelas">
                 <option value="<?= $vkelas ?>"><?= $vkelas ?></option>
-                <option value="10 TKJ 1">10 TKJ 1 </option>
-                <option value="10 TKJ 2">10 TKJ 2</option>
+                <option value="12 TKJ 1">12 TKJ 1 </option>
+                <option value="12 TKJ 2">12 TKJ 2</option>
               </select>
               <br>
               <div class="mb-3">
@@ -209,9 +209,9 @@ if (isset($_GET['hal'])) {
           //untuk pencarian data
           if (isset($_POST['bcari'])) {
             $keyword = $_POST['tcari'];
-            $q = "SELECT * FROM tsiswa10 WHERE id_nis like '%$keyword%' or nama like '%$keyword%' or alamat like '%$keyword%' or absen like '%$keyword%' or kelas like '%$keyword%'order by absen asc";
+            $q = "SELECT * FROM tsiswa12 WHERE id_nis like '%$keyword%' or nama like '%$keyword%' or alamat like '%$keyword%' or absen like '%$keyword%' or kelas like '%$keyword%'order by absen asc";
           } else {
-            $q = "SELECT * FROM tsiswa10 order by absen ASC";
+            $q = "SELECT * FROM tsiswa12 order by absen ASC";
           }
 
           //persiapan menampikan data
@@ -226,8 +226,8 @@ if (isset($_GET['hal'])) {
               <td><?= $data['kelas'] ?></td>
               <td><?= $data['alamat'] ?></td>
               <td>
-                <a href="siswaTkj10.php?hal=edit&id=<?= $data['absen'] ?>" class="btn btn-warning">Edit</a>
-                <a href="siswaTkj10.php?hal=hapus&id=<?= $data['absen'] ?>" class="btn btn-danger" onclick="return confirm ('Apakah anda yakin menghapus data ini?')">Hapus</a>
+                <a href="siswaTkj12.php?hal=edit&id=<?= $data['absen'] ?>" class="btn btn-warning">Edit</a>
+                <a href="siswaTkj12.php?hal=hapus&id=<?= $data['absen'] ?>" class="btn btn-danger" onclick="return confirm ('Apakah anda yakin menghapus data ini?')">Hapus</a>
               </td>
             </tr>
 
