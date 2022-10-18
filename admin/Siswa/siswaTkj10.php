@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "koneksidatasiswa.php";
 
 //jika tombol simpan di klik
 if (isset($_POST['bsimpan'])) {
