@@ -11,50 +11,50 @@ if (empty($_SESSION['username']) or empty($_SESSION['level'])) {
 //jika tombol simpan di klik
 if (isset($_POST['bsimpan'])) {
 
-  //pengujian apakah data akan dia edit atau di simpan baru
-  if (isset($_GET['hal']) == "edit") {
-    //data akan di edit 
-    $edit = mysqli_query($koneksi, "UPDATE tsiswa10 SET 
-                                  absen   = '$_POST[tabsen]',
-                                  id_nis  = '$_POST[tnis]',
-                                  nama    = '$_POST[tnama]',
-                                  kelas   = '$_POST[tkelas]',
-                                  alamat  = '$_POST[talamat]'
-                                  where absen = '$_GET[id]'");
-
-
-    if ($edit) {
-      echo "<script>
-                        alert('edit Data Sukses!');
-                        document.location='siswaTKJ10.php';         
-                    </script>";
+    //pengujian apakah data akan dia edit atau di simpan baru
+    if (isset($_GET['hal']) == "edit") {
+      //data akan di edit 
+      $edit = mysqli_query($koneksi, "UPDATE tsiswa11 SET 
+                                    absen   = '$_POST[tabsen]',
+                                    id_nis  = '$_POST[tnis]',
+                                    nama    = '$_POST[tnama]',
+                                    kelas   = '$_POST[tkelas]',
+                                    alamat  = '$_POST[talamat]'
+                                    where absen = '$_GET[id]'");
+  
+  
+      if ($edit) {
+        echo "<script>
+                          alert('edit Data Sukses!');
+                          document.location='siswaTKJ11.php';         
+                      </script>";
+      } else {
+        echo "<script>
+                              alert('edit Data Gagal!');
+                              document.location='siswaTKJ11.php';         
+                          </script>";
+      }
     } else {
-      echo "<script>
-                            alert('edit Data Gagal!');
-                            document.location='siswaTKJ10.php';         
-                        </script>";
-    }
-  } else {
-    //Data Akan di simpan baru
-    $simpan = mysqli_query($koneksi, " INSERT INTO tsiswa10 (absen,id_nis,nama,kelas,alamat)
-                                      VALUE ('$_POST[tabsen]',
-                                             '$_POST[tnis]',
-                                             '$_POST[tnama]',
-                                             '$_POST[tkelas]',
-                                             '$_POST[talamat]')");
-    if ($simpan) {
-      echo "<script>
-            alert('Simpan Data Sukses!');
-            document.location='siswaTKJ10.php';         
-        </script>";
-    } else {
-      echo "<script>
-                alert('Simpan Data Gagal!');
-                document.location='siswaTKJ10.php';         
-            </script>";
+      //Data Akan di simpan baru
+      $simpan = mysqli_query($koneksi, " INSERT INTO tsiswa11 (absen,id_nis,nama,kelas,alamat)
+                                        VALUE ('$_POST[tabsen]',
+                                               '$_POST[tnis]',
+                                               '$_POST[tnama]',
+                                               '$_POST[tkelas]',
+                                               '$_POST[talamat]')");
+      if ($simpan) {
+        echo "<script>
+              alert('Simpan Data Sukses!');
+              document.location='siswaTKJ11.php';         
+          </script>";
+      } else {
+        echo "<script>
+                  alert('Simpan Data Gagal!');
+                  document.location='siswaTKJ11.php';         
+              </script>";
+      }
     }
   }
-}
 
 
 ?>
@@ -141,11 +141,11 @@ if (isset($_POST['bsimpan'])) {
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menambah Data Siswa</h6>
-                        <a class="collapse-item active" href="siswaTkj10.php">X TKJ </a>
-                        <a class="collapse-item" href="siswatkj11.php">XI TKJ</a>
+                        <a class="collapse-item" href="siswaTkj10.php">X TKJ </a>
+                        <a class="collapse-item active" href="siswatkj11.php">XI TKJ</a>
                         <a class="collapse-item" href="siswaTkj12.php">XII TKJ</a>
                         <h6 class="collapse-header">Manage Data Siswa</h6>
-                        <a class="collapse-item" href="editsiswa10.php">X TKJ </a>
+                        <a class="collapse-item" href="siswaTkj10.php">X TKJ </a>
                         <a class="collapse-item" href="utilities-border.html">XI TKJ</a>
                         <a class="collapse-item" href="utilities-animation.html">XII TKJ</a>
                     </div>
@@ -327,7 +327,7 @@ if (isset($_POST['bsimpan'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Form ubah data X TKJ</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Form ubah data XI TKJ</h1>
                         </div>
 
                     <!-- Content Row -->

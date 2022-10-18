@@ -1,60 +1,10 @@
 <?php
 session_start();
-include "koneksidatasiswa.php";
-
 if (empty($_SESSION['username']) or empty($_SESSION['level'])) {
     echo "<script>alert('Maaf,Untuk mengakses halaman ini,anda harus login terlebih dahulu'); 
    document.location='index.php'</script>";
 }
 
-
-//jika tombol simpan di klik
-if (isset($_POST['bsimpan'])) {
-
-  //pengujian apakah data akan dia edit atau di simpan baru
-  if (isset($_GET['hal']) == "edit") {
-    //data akan di edit 
-    $edit = mysqli_query($koneksi, "UPDATE tsiswa10 SET 
-                                  absen   = '$_POST[tabsen]',
-                                  id_nis  = '$_POST[tnis]',
-                                  nama    = '$_POST[tnama]',
-                                  kelas   = '$_POST[tkelas]',
-                                  alamat  = '$_POST[talamat]'
-                                  where absen = '$_GET[id]'");
-
-
-    if ($edit) {
-      echo "<script>
-                        alert('edit Data Sukses!');
-                        document.location='siswaTKJ10.php';         
-                    </script>";
-    } else {
-      echo "<script>
-                            alert('edit Data Gagal!');
-                            document.location='siswaTKJ10.php';         
-                        </script>";
-    }
-  } else {
-    //Data Akan di simpan baru
-    $simpan = mysqli_query($koneksi, " INSERT INTO tsiswa10 (absen,id_nis,nama,kelas,alamat)
-                                      VALUE ('$_POST[tabsen]',
-                                             '$_POST[tnis]',
-                                             '$_POST[tnama]',
-                                             '$_POST[tkelas]',
-                                             '$_POST[talamat]')");
-    if ($simpan) {
-      echo "<script>
-            alert('Simpan Data Sukses!');
-            document.location='siswaTKJ10.php';         
-        </script>";
-    } else {
-      echo "<script>
-                alert('Simpan Data Gagal!');
-                document.location='siswaTKJ10.php';         
-            </script>";
-    }
-  }
-}
 
 
 ?>
@@ -76,7 +26,6 @@ if (isset($_POST['bsimpan'])) {
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Custom styles for this template-->
@@ -104,8 +53,8 @@ if (isset($_POST['bsimpan'])) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="dashboard.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -133,7 +82,7 @@ if (isset($_POST['bsimpan'])) {
             </li>
             
             <!-- Nav Item - Data siswa -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-address-book"></i>
                     <span>Data Siswa</span>
@@ -141,11 +90,11 @@ if (isset($_POST['bsimpan'])) {
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menambah Data Siswa</h6>
-                        <a class="collapse-item active" href="siswaTkj10.php">X TKJ </a>
-                        <a class="collapse-item" href="siswatkj11.php">XI TKJ</a>
-                        <a class="collapse-item" href="siswaTkj12.php">XII TKJ</a>
+                        <a class="collapse-item" href="siswaTkj10.php">X TKJ </a>
+                        <a class="collapse-item" href="utilities-border.html">XI TKJ</a>
+                        <a class="collapse-item" href="utilities-animation.html">XII TKJ</a>
                         <h6 class="collapse-header">Manage Data Siswa</h6>
-                        <a class="collapse-item" href="editsiswa10.php">X TKJ </a>
+                        <a class="collapse-item" href="siswaTkj10.php">X TKJ </a>
                         <a class="collapse-item" href="utilities-border.html">XI TKJ</a>
                         <a class="collapse-item" href="utilities-animation.html">XII TKJ</a>
                     </div>
@@ -327,50 +276,13 @@ if (isset($_POST['bsimpan'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Form ubah data X TKJ</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
-                    <!-- Awal Form -->
-            <form method="POST">
-              <div class="mb-3">
-                <label class="form-label">No Absen</label>
-                <input type="text" name="tabsen" value="<?= $vabsen ?>" class="form-control" placeholder="Masuukan No Absen Siswa">
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Nis</label>
-                <input type="text" name="tnis" value="<?= $vnis ?>" class="form-control" placeholder="Masukkan Nis Siswa">
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Nama</label>
-                <input type="text" name="tnama" value="<?= $vnama ?>" class="form-control" placeholder="Masukkan Nama Siswa">
-              </div>
-
-              <label class="form-label">Kelas</label>
-              <select class="form-select" name="tkelas">
-                <option value="<?= $vkelas ?>"><?= $vkelas ?></option>
-                <option value="10 TKJ 1">10 TKJ 1 </option>
-                <option value="10 TKJ 2">10 TKJ 2</option>
-              </select>
-              <br>
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-                <textarea class="form-control" name="talamat" value="<?= $valamat ?>" id="exampleFormControlTextarea1" placeholder="Masukkan Alamat Siswa" rows="3"><?= $valamat ?></textarea>
-              </div>
-
-              <div class="text-center">
-                <hr>
-                <button class="btn btn-primary" name="bsimpan" type="submit">Simpan</button>
-                <button class="btn btn-danger" name="bkosongkan" type="riset">kosongkan</button>
-              </div>
-
-
-            </form>
-            <!-- Akhir Form -->
+                        <!-- /.container-fluid -->
 
                     </div>
                     <!-- End of Main Content -->

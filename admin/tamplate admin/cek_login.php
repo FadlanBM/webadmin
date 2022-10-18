@@ -23,16 +23,16 @@ if ($password == $user_valid['password']) {
 
     //uji level user
     if ($level == 'guru') {
-        header('location:index.php');
+        header('location:dashboard.php');
     }elseif ($level == 'admin') {
         header('location:#');
     }
 }else{
     echo "<script>alert('Maaf,Username tidak terdaftar'); 
-   document.location='login.php'</script>";
+   document.location='index.php'</script>";
 }
 }else{
     echo "<script>alert('Maaf,Username tidak terdaftar'); 
-   document.location='login.php'</script>";
+   document.location='index.php'</script>";
 }
 ?>
